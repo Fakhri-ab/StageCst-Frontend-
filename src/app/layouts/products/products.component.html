@@ -1,0 +1,68 @@
+<div class="wrapper">
+
+    <div class="panel-header panel-header-sm">
+    </div>
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> ProductList</h4>
+                        <button _ngcontent-c3 (click)="goTaAddproduct()" class="btn btn-primary btn-simple btn-round" type="button">
+                            <i class="now-ui-icons ui-1_simple-add"></i>Add Product</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table" *ngFor="let product of products">
+                                <thead class=" text-primary">
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Country
+                                </th>
+                                <th>
+                                    City
+                                </th>
+                                <th class="text-right">
+                                    images
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        {{product.nomProduit}}
+                                    </td>
+                                    <td>
+                                        {{product.prixProduit}}
+                                    </td>
+                                    <td>
+                                        {{product.qteProduit}}
+                                    </td>
+                                    <td class="text-right">
+                                        <img
+                                                class="rounded-circle mr-1"
+                                                src="http://localhost:8081/Imgarticles/+{{product.idProduit}}"
+                                                height="32"
+                                                width="32"
+                                                alt="datatable-avatar"
+                                        />
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+
+        </div>
+    </div>
+
+
+
+
+    </div>
+</div>

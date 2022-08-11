@@ -1,0 +1,68 @@
+<div class="card">
+    <div class="card-header">
+        <h5 class="title">Add Product</h5>
+    </div>
+    <div class="card-body ">
+        <form [formGroup]="ProduitForm" (ngSubmit)="submit()">
+            <div class="row">
+                <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                        <label for="nomProduit">nom Produit</label>
+                        <input name="nomProduit" id="nomProduit"  [formControlName]="'nomProduit'" type="text" class="form-control" placeholder="nom Produit">
+                    </div>
+                </div>
+                <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                        <label for="prixProduit">prix Produit</label>
+                        <input name="prixProduit" id="prixProduit" [formControlName]="'prixProduit'" type="text" class="form-control" placeholder="prix Produit">
+                    </div>
+                </div>
+                <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                        <label for="qteProduit">qte Produit</label>
+                        <input name="qteProduit" id="qteProduit" [formControlName]="'qteProduit'" type="text" class="form-control" placeholder="qte Produit">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-4 pr-1">
+                    <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
+                    <div class="form-group" >
+                        <label >click Here to uplaod </label>
+                        <input type="file" (change)="onSelectFile($event)" style="cursor: pointer" class="form-control" placeholder="img Produit" >
+                    </div>
+                </div>
+
+                <div class="col-md-4 pr-1">
+                    <div ngbDropdown class="dropdown">
+                        <a class="nav-link dropdown-toggle" ngbDropdownToggle>
+
+                            <p>
+                                <label for="qteProduit">categorie Produit</label>
+                            </p>
+                        </a>
+                        <div ngbDropdownMenu class="dropdown-menu" *ngFor="let cat of cats">
+                            <a class="dropdown-item" href="#">{{cat.nomCategorie}}</a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <button _ngcontent-c3  class="btn btn-primary btn-simple btn-round" type="submit">
+                            <i class="now-ui-icons ui-1_simple-add"></i>Save Product</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Example single danger button -->
+
+
