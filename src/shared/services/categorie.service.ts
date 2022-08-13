@@ -18,4 +18,8 @@ export class CategorieService {
   GetAllCat(): Observable<Categorie> {
     return this.httpclient.get<Categorie>(`${this.api}/AllCat`);
   }
+
+  addcat(Categorie) {
+    return this.httpclient.post(`${this.api}/AddCat`, Categorie);
+  }
 }

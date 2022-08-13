@@ -35,17 +35,21 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 pr-1">
-                    <div ngbDropdown class="dropdown">
-                        <a class="nav-link dropdown-toggle" ngbDropdownToggle>
 
-                            <p>
-                                <label for="qteProduit">categorie Produit</label>
-                            </p>
-                        </a>
-                        <div ngbDropdownMenu class="dropdown-menu" *ngFor="let cat of cats">
-                            <a class="dropdown-item" href="#">{{cat.nomCategorie}}</a>
 
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <div class="col-12 " >
+                                <label>categorie</label>
+                                <ng-multiselect-dropdown
+                                        [placeholder]="'choisir categorie'"
+                                        [settings]="dropdownSettings"
+                                        [data]="cat"
+                                        [formControlName]="'categorie'"        >
+                                </ng-multiselect-dropdown>
+
+                            </div>
                         </div>
                     </div>
                 </div>

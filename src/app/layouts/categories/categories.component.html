@@ -1,0 +1,57 @@
+<div class="wrapper">
+
+    <div class="panel-header panel-header-sm">
+    </div>
+    <div class="main-content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> Categories List</h4>
+                        <button _ngcontent-c3 (click)="goToAdd()" class="btn btn-primary btn-simple btn-round" type="button">
+                            <i class="now-ui-icons ui-1_simple-add"></i>Add categories</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table" *ngFor="let cat of cats">
+                                <thead class=" text-primary">
+                                <th>
+                                    Id
+                                </th>
+                                <th>
+                                    Name
+                                </th>
+                                <th class="text-right">
+                                    Actions
+                                </th>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        {{cat.idCategorie}}
+                                    </td>
+                                    <td>
+                                        {{cat.nomCategorie}}
+                                    </td>
+                                    <td class="text-right">
+                                        <button _ngcontent-c3  class="btn btn-primary btn-simple btn-round" type="button">
+                                            <i class="now-ui-icons design-2_ruler-pencil"></i></button>
+                                        <button _ngcontent-c3  class="btn btn-primary btn-simple btn-round" type="button">
+                                            <i class="now-ui-icons ui-1_simple-remove"></i></button>
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+

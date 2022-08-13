@@ -5,6 +5,7 @@ import {ProduitService} from '../../../../shared/services/produit.service';
 import {Router} from '@angular/router';
 import {CategorieService} from '../../../../shared/services/categorie.service';
 import {Categorie} from '../../../../shared/models/categorie';
+import {IDropdownSettings} from 'ng-multiselect-dropdown';
 
 @Component({
   selector: 'app-add-product',
@@ -12,8 +13,8 @@ import {Categorie} from '../../../../shared/models/categorie';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-
-  cats!: Categorie;
+  dropdownSettings: IDropdownSettings = {};
+  cat!: Categorie;
   prodFile
   message
   imagePath
@@ -25,23 +26,33 @@ export class AddProductComponent implements OnInit {
     nomProduit: new FormControl(''),
     prixProduit: new FormControl(''),
     qteProduit: new FormControl(''),
-
+      categorie: new FormControl('')
 
   });
   constructor(private produitService: ProduitService, private router: Router,
               private CategoriesService: CategorieService) { }
 
   ngOnInit(): void {
-    this.getAllcategories();
+   // this.getallcat();
+      this.dropdownSettings = {
+      idField: 'idCategorie',
+      textField: 'nomCategorie',
+    };
+    this.CategoriesService.GetAllCat().subscribe(
+        x => this.cat = x,
+        e => console.log(e),
+     )
   }
 
   submit() {
     const formData = new FormData() ;
+    this.ProduitForm.value.categorie = this.ProduitForm.value.categorie[0]
     formData.append('produit', JSON.stringify(this.ProduitForm.value));
     formData.append('file', this.prodFile);
    // formData.append('nomcat', this.prodFile);
     this.produitService.addProduit(formData).subscribe((res => this.router.navigateByUrl('/admin/Products')));
-    console.log(this.ProduitForm.value);
+    // console.log(this.ProduitForm.value);
+
   }
 
   onSelectFile(event) {
@@ -66,10 +77,5 @@ export class AddProductComponent implements OnInit {
     }
   }
 
-  getAllcategories() {
-    this.CategoriesService.GetAllCat().subscribe(res => {this.cats = res;
-      console.log(res)
-    })
-  }
 
 }

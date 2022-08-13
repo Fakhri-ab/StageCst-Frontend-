@@ -11,6 +11,7 @@ declare interface RouteInfo {
 export const ROUTES: RouteInfo[] = [
     { path: '/admin/dashboard', title: 'Dashboard',  icon: 'design_app', class: '', },
     { path: '/admin/Products', title: 'Products',  icon: 'design_app', class: '', },
+    { path: '/admin/Categories', title: 'Categories',  icon: 'design_app', class: '', },
     { path: '/admin/demande/alldemande', title: 'Mes demandes',  icon: 'users_single-02', class: '' , },
     // tslint:disable-next-line:max-line-length
     { path: '/admin/demande/demanderecue', title: ' demandes en attentes',  icon: 'users_single-02', class: '',  },

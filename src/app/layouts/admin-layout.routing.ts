@@ -4,6 +4,7 @@ import { Routes } from '@angular/router';
 import { DashboardComponent } from '../../app/layouts/dashboard/dashboard.component';
 import { RoleComponent } from './role/role.component';
 import {ProductsComponent} from './products/products.component';
+import {CategoriesComponent} from './categories/categories.component';
 export const AdminLayoutRoutes: Routes = [
 
     {
@@ -44,6 +45,15 @@ export const AdminLayoutRoutes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('./Products/products.module').then(x => x.ProductsModule),
+
+            }]},
+    {
+        path: 'Categories',
+        component: CategoriesComponent,
+        children: [
+            {
+                path: '',
+                loadChildren: () => import('./Categories/Categories.module').then(x => x.CategoriesModule),
 
             }]}
 

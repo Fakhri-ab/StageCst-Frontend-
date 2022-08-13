@@ -7,6 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from 'shared/components/notfound/notfound.component';
 import { PageComponent } from './Page/page.component';
 import {RegisterComponent} from './register/register.component';
+import {AuthGuard} from '../shared/guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -25,6 +26,8 @@ const routes: Routes = [
 
   },
   {
+    // canActivate: [AuthGuard],
+   // canActivateChild: [AuthGuard],
     path: 'admin',
     component: AdminLayoutComponent,
     children: [
@@ -36,8 +39,12 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('./layouts/Products/products.module').then(x => x.ProductsModule),
-
-      }]},
+      },
+      {
+        path: '',
+        loadChildren: () => import('./layouts/Categories/Categories.module').then(x => x.CategoriesModule),
+      }
+      ]},
 
   {
     path: 'page',

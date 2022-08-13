@@ -12,6 +12,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UsersComponent } from './user/users.component';
 import { RoleComponent } from './role/role.component';
 import {ProductsComponent} from './products/products.component';
+import {CategoriesComponent} from './categories/categories.component';
 
 
 @NgModule({
@@ -32,6 +33,7 @@ import {ProductsComponent} from './products/products.component';
     UsersComponent,
     RoleComponent,
     ProductsComponent,
+    CategoriesComponent
 
   ]
 })

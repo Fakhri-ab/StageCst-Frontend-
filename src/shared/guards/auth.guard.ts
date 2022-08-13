@@ -1,3 +1,5 @@
+// @ts-ignore
+
 import { Injectable } from '@angular/core';
 import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
 import { Observable } from 'rxjs';
@@ -15,20 +17,19 @@ export class AuthGuard implements CanActivate {
       private userService: UserService
   ) {}
 
-  // canActivate(
-    // route: ActivatedRouteSnapshot,
-   // state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+   canActivate(
+     route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  if (this.userAuthService.getToken()) {
+  return true;
+} else {
+  this.router.navigateByUrl('/login')
+
+}
+  }
    // return true;
  //  }
 
-  // tslint:disable-next-line:max-line-length
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.userAuthService.getToken()) {
-      return true;
-    } else {
-      this.router.navigateByUrl('/login')
 
-    }
-  }
 
 }
