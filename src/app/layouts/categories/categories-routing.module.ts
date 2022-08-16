@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {AddCategorieComponent} from './add-categorie/add-categorie.component';
+import {EditCategorieComponent} from './edit-categorie/edit-categorie.component';
 
 const routes: Routes = [
+
   {path: 'Categories/AddCategorie',
-  component : AddCategorieComponent}
+  component : AddCategorieComponent},
+
+  {path: 'Categories/EditCategorie/:id',
+    component : EditCategorieComponent}
 ];
 
 @NgModule({

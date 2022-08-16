@@ -1,26 +1,29 @@
+<p>edit-product works!</p>
+<div class="panel-header panel-header-sm">
+</div>
 <div class="card">
     <div class="card-header">
-        <h5 class="title">Add Product</h5>
+        <h5 class="title">Edit Product</h5>
     </div>
     <div class="card-body ">
-        <form [formGroup]="ProduitForm" (ngSubmit)="submit()">
+        <form #f="ngForm" [formGroup]="ProduitForm" (ngSubmit)="submit1(f)">
             <div class="row">
                 <div class="col-md-4 pr-1">
                     <div class="form-group">
                         <label for="nomProduit">nom Produit</label>
-                        <input name="nomProduit" id="nomProduit"  [formControlName]="'nomProduit'" type="text" class="form-control" placeholder="nom Produit">
+                        <input name="nomProduit" id="nomProduit" [(ngModel)]="produit.nomProduit"  [formControlName]="'nomProduit'" type="text" class="form-control" placeholder="nom Produit">
                     </div>
                 </div>
                 <div class="col-md-4 pr-1">
                     <div class="form-group">
                         <label for="prixProduit">prix Produit</label>
-                        <input name="prixProduit" id="prixProduit" [formControlName]="'prixProduit'" type="text" class="form-control" placeholder="prix Produit">
+                        <input name="prixProduit" id="prixProduit" [(ngModel)]="produit.prixProduit" [formControlName]="'prixProduit'" type="text" class="form-control" placeholder="prix Produit">
                     </div>
                 </div>
                 <div class="col-md-4 pr-1">
                     <div class="form-group">
                         <label for="qteProduit">qte Produit</label>
-                        <input name="qteProduit" id="qteProduit" [formControlName]="'qteProduit'" type="text" class="form-control" placeholder="qte Produit">
+                        <input name="qteProduit" id="qteProduit" [(ngModel)]="produit.qteProduit" [formControlName]="'qteProduit'" type="text" class="form-control" placeholder="qte Produit">
                     </div>
                 </div>
             </div>
@@ -31,7 +34,7 @@
                     <i class="now-ui-icons arrows-1_cloud-upload-94"></i>
                     <div class="form-group" >
                         <label >click Here to uplaod </label>
-                        <input type="file" (change)="onSelectFile($event)" style="cursor: pointer" class="form-control" placeholder="img Produit" >
+                        <input type="file" (change)="onSelectFile($event)"  style="cursor: pointer" class="form-control" placeholder="img Produit" >
                     </div>
                 </div>
 
@@ -53,10 +56,11 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="col-md-12">
                     <div class="form-group">
                         <label>Description</label>
-                        <input type="text" [formControlName]="'description'" class="form-control" placeholder="Description" >
+                        <input type="text" [(ngModel)]="produit.description" [formControlName]="'description'" class="form-control" placeholder="Description" >
                     </div>
                 </div>
             </div>

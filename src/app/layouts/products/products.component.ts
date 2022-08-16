@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {Produit} from '../../../shared/models/produit';
 import {ProduitService} from '../../../shared/services/produit.service';
+import {Categorie} from '../../../shared/models/categorie';
 
 @Component({
   selector: 'app-products',
@@ -9,6 +10,7 @@ import {ProduitService} from '../../../shared/services/produit.service';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+
 
   products!: any[];
   focus;
@@ -30,6 +32,20 @@ export class ProductsComponent implements OnInit {
     this.produitService.GetAllProduits().subscribe(res => {this.products = res;
       console.log(res)
        })
+  }
+
+  goToEdit(id) {
+    this.router.navigate(['admin/Products/EditProduct', id])
+  }
+
+  deleteProduct(prod: Produit) {
+    // @ts-ignore
+    this.produitService.deleteProduit(prod.idProduit).subscribe(res => {console.log(res);
+      this.router.navigate(['/admin/Products']);
+      this.getAllProducts(); })
+  }
+  goToProductItem(id) {
+    this.router.navigate(['admin/Products/detailsProduct', id])
   }
 
 

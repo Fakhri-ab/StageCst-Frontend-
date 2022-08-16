@@ -1,0 +1,32 @@
+<p>edit-categorie works!</p>
+<div class="panel-header panel-header-sm">
+</div>
+<div class="card">
+    <div class="card-header">
+        <h5 class="title">Edit categorie</h5>
+    </div>
+    <div class="card-body ">
+        <form #f="ngForm" [formGroup]="CategorieForm" (ngSubmit)="submit(f)">
+            <div class="row">
+                <div class="col-md-4 pr-1">
+                    <div class="form-group">
+                        <label for="nomCategorie">nom Categorie</label>
+                        <input name="nomCategorie" [(ngModel)]="cat.nomCategorie" [formControlName]="'nomCategorie'" id="nomCategorie"   type="text" class="form-control" placeholder="nom Produit">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <button _ngcontent-c3  class="btn btn-primary btn-simple btn-round" type="submit">
+                            <i class="now-ui-icons ui-1_simple-add"></i>Save categoriee</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Example single danger button -->
+
+

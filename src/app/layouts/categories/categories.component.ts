@@ -32,4 +32,14 @@ export class CategoriesComponent implements OnInit {
     this.router.navigate(['admin/Categories/AddCategorie'])
   }
 
+  goToEdit(id) {
+    this.router.navigate(['admin/Categories/EditCategorie', id])
+  }
+
+  deleteCategorie(cat: Categorie) {
+    this.categorieService.deleteCategorie(cat.idCategorie).subscribe(res => {console.log(res);
+      this.router.navigate(['/admin/Categories']);
+      this.getAllcategories(); })
+  }
+
 }

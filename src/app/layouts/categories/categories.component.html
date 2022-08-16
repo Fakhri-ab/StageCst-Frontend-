@@ -34,9 +34,9 @@
                                         {{cat.nomCategorie}}
                                     </td>
                                     <td class="text-right">
-                                        <button _ngcontent-c3  class="btn btn-primary btn-simple btn-round" type="button">
+                                        <button _ngcontent-c3 (click)="goToEdit(cat.idCategorie)" class="btn btn-primary btn-simple btn-round" type="button">
                                             <i class="now-ui-icons design-2_ruler-pencil"></i></button>
-                                        <button _ngcontent-c3  class="btn btn-primary btn-simple btn-round" type="button">
+                                        <button _ngcontent-c3 (click)="deleteCategorie(cat)"  class="btn btn-primary btn-simple btn-round" type="button">
                                             <i class="now-ui-icons ui-1_simple-remove"></i></button>
                                     </td>
                                 </tr>

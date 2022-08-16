@@ -9,6 +9,7 @@ import {Observable, throwError} from 'rxjs';
 import {UserAuthService} from '../services/user-auth.service';
 import {Router} from '@angular/router';
 import {catchError} from 'rxjs/operators';
+import {UserService} from '../services/user.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -22,11 +23,12 @@ export class AuthInterceptor implements HttpInterceptor {
     }
     const token = this.userAuthService.getToken();
 
+   // const user = this.userService.getus
     if (token) {
       req =   req.clone(
           {
             setHeaders: {
-              Authorization : `Bearer ${token}`
+                Authorization: `Bearer ${token}`
             }
           }
       )

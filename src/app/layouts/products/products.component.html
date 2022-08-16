@@ -33,13 +33,13 @@
                                 </thead>
                                 <tbody>
                                 <tr>
-                                    <td>
+                                    <td (click)="goToProductItem(product.idProduit)">
                                         {{product.nomProduit}}
                                     </td>
-                                    <td>
+                                    <td (click)="goToProductItem(product.idProduit)">
                                         {{product.prixProduit}}
                                     </td>
-                                    <td>
+                                    <td (click)="goToProductItem(product.idProduit)">
                                         {{product.qteProduit}}
                                     </td>
                                     <td class="text-right">
@@ -48,13 +48,13 @@
                                                 src="http://localhost:8081/Imgarticles/+{{product.idProduit}}"
                                                 height="50"
                                                 width="50"
-                                                alt="datatable-avatar"
+
                                         />
                                     </td>
                                     <td class="text-right">
-                                        <button _ngcontent-c3 (click)="goTaAddproduct()" class="btn btn-primary btn-simple btn-round" type="button">
+                                        <button _ngcontent-c3 (click)="goToEdit(product.idProduit)" class="btn btn-primary btn-simple btn-round" type="button">
                                             <i class="now-ui-icons design-2_ruler-pencil"></i></button>
-                                        <button _ngcontent-c3 (click)="goTaAddproduct()" class="btn btn-primary btn-simple btn-round" type="button">
+                                        <button _ngcontent-c3 (click)="deleteProduct(product)" class="btn btn-primary btn-simple btn-round" type="button">
                                             <i class="now-ui-icons ui-1_simple-remove"></i></button>
                                     </td>
                                 </tr>

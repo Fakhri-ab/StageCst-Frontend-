@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import {ProduitService} from '../../../../shared/services/produit.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {CategorieService} from '../../../../shared/services/categorie.service';
+import {IDropdownSettings} from 'ng-multiselect-dropdown';
+import {Categorie} from '../../../../shared/models/categorie';
 import {Produit} from '../../../../shared/models/produit';
 import {FormControl, FormGroup} from '@angular/forms';
-import {ProduitService} from '../../../../shared/services/produit.service';
-import {Router} from '@angular/router';
-import {CategorieService} from '../../../../shared/services/categorie.service';
-import {Categorie} from '../../../../shared/models/categorie';
-import {IDropdownSettings} from 'ng-multiselect-dropdown';
 
 @Component({
-  selector: 'app-add-product',
-  templateUrl: './add-product.component.html',
-  styleUrls: ['./add-product.component.css']
+  selector: 'app-edit-product',
+  templateUrl: './edit-product.component.html',
+  styleUrls: ['./edit-product.component.css']
 })
-export class AddProductComponent implements OnInit {
+export class EditProductComponent implements OnInit {
+
   dropdownSettings: IDropdownSettings = {};
   cat!: Categorie;
   prodFile
@@ -20,40 +21,55 @@ export class AddProductComponent implements OnInit {
   imagePath
   imgURL
 
+  id: any;
   produit: Produit ;
 
-    ProduitForm = new FormGroup({
+
+  ProduitForm = new FormGroup({
     nomProduit: new FormControl(''),
     prixProduit: new FormControl(''),
     qteProduit: new FormControl(''),
-      description: new FormControl(''),
-      categorie: new FormControl('')
+    description: new FormControl(''),
+    categorie: new FormControl('')
 
   });
-  constructor(private produitService: ProduitService, private router: Router,
+
+  constructor(private produitService: ProduitService, private router: Router, private router1: ActivatedRoute,
               private CategoriesService: CategorieService) { }
 
   ngOnInit(): void {
-   // this.getallcat();
-      this.dropdownSettings = {
+    this.dropdownSettings = {
       idField: 'idCategorie',
       textField: 'nomCategorie',
     };
     this.CategoriesService.GetAllCat().subscribe(
         x => this.cat = x,
         e => console.log(e),
-     )
+    )
+
+    this.router1.paramMap.subscribe(paramMap => {
+      this.id = paramMap.get('id');
+      this.produitService.getProduit(this.id).subscribe(cat => {this.produit = cat; })
+    })
   }
 
-  submit() {
+  updateProduit( ) {
     const formData = new FormData() ;
     this.ProduitForm.value.categorie = this.ProduitForm.value.categorie[0]
     formData.append('produit', JSON.stringify(this.ProduitForm.value));
     formData.append('file', this.prodFile);
-   // formData.append('nomcat', this.prodFile);
-    this.produitService.addProduit(formData).subscribe((res => this.router.navigateByUrl('/admin/Products')));
-    // console.log(this.ProduitForm.value);
+    // @ts-ignore
+    this.produitService.EditProduit(formData, this.id)
+        .subscribe(data => {
+          console.log('hhhhhhhhhh' , data);
+          // this.produit = new Produit();
+          this.gotoList();
+        })
+  }
 
+
+  submit1(f) {
+     this.updateProduit();
   }
 
   onSelectFile(event) {
@@ -78,5 +94,8 @@ export class AddProductComponent implements OnInit {
     }
   }
 
+  gotoList() {
+    this.router.navigate(['/admin/Products']);
+  }
 
 }

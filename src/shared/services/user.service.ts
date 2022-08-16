@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserAuthService} from './user-auth.service';
 import jwt_decode from 'jwt-decode';
 import {UserModel} from '../models/user-model';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,15 @@ export class UserService {
 
   public  login(loginForm) {
     return this.httpclient.post(this.api + '/authenticate', loginForm, {headers: this.requestHeader})
+       // .pipe(
+        // map(user => {
+        //  localStorage.setItem('jwtToken', JSON.stringify(user))
+      //    return user ;
+    //    })
+  //  )
   }
+
+
 
 
   public  SignUp(UserModel) {

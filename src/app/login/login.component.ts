@@ -11,10 +11,6 @@ import {UserAuthService} from '../../shared/services/user-auth.service';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
-    @Input()
-    public alerts: Array<IAlert> = [];
-    private backup: Array<IAlert>;
-
 
     loading = false
     loginForm = new FormGroup({
@@ -36,13 +32,6 @@ export class LoginComponent implements OnInit {
       ngOnInit() {
           const body = document.getElementsByTagName('body')[0];
           body.classList.add('login-page');
-          this.alerts.push({
-              id: 1,
-              type: 'success',
-              strong: 'Well done!',
-              message: 'You successfully created your account.',
-              icon: 'ui-2_like'
-          })
     }
 
     login(loginForm: NgForm) {
@@ -78,16 +67,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['register'])
     }
 
-    public closeAlert(alert: IAlert) {
-        const index: number = this.alerts.indexOf(alert);
-        this.alerts.splice(index, 1);
-    }
+
 }
 
-export interface IAlert {
-    id: number;
-    type: string;
-    strong?: string;
-    message: string;
-    icon?: string;
-}
+

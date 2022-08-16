@@ -16,6 +16,7 @@ import { ComponentsModule } from 'shared/components/components.module';
 import {MatSelectModule} from '@angular/material/select';
 import { PageComponent } from './Page/page.component';
 import { RegisterComponent } from './register/register.component';
+import {AuthInterceptor} from '../shared/guards/auth.interceptor';
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -40,6 +41,11 @@ import { RegisterComponent } from './register/register.component';
 
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
 
     ],
   bootstrap: [AppComponent]
