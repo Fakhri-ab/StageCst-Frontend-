@@ -1,10 +1,72 @@
 <div class="wrapper">
-    
-    
-    <div class="section">
-        <div class="container">
+    <h5 class="description">An artist of considerable range, Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure</h5>
+            <div class="row">
+                <div class="col-md-12">
+                    <h4 class="title text-center">About Us</h4>
+                    <h5 class="description">La société SCITNA,
+                        a su s’imposer sur le marché tunisien pour devenir l’un des principaux distributeurs de fournitures industrielles spécialisée dans la commercialisation des (Bandes transporteuses, rouleaux de manutention, godets, tamis, moteurs électriques, réducteurs…). En plus de la commercialisation d’une large gamme variée de produits et la vulcanisation des bandes transporteuse, nous assurons également l’installation et la maintenance des produits en mettant à votre disposition nos équipes qualifiés,
+                        disponibles 24/24.</h5>
+                    <ngb-tabset [justify]="'center'" type="pills" class="nav nav-pills nav-pills-primary  nav-pills-just-icons justify-content-center tab-space">
 
-         users works
+
+                        <ngb-tab>
+                            <ng-template ngbTabTitle>
+                                <i class="now-ui-icons sport_user-run"></i>
+                            </ng-template>
+                            <ng-template ngbTabContent>
+                                <div class="row">
+                                    <div class="col-md-10 ml-auto mr-auto">
+                                        <div class="row collections">
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg3.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg8.jpg" alt="" class="img-raised">
+                                            </div>
+                                            <div class="col-md-6">
+                                                <img src="assets/img/bg7.jpg" alt="" class="img-raised">
+                                                <img src="assets/img/bg6.jpg" class="img-raised">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </ngb-tab>
+                    </ngb-tabset>
+                </div>
+            </div>
         </div>
-<router-outlet></router-outlet>
-    </div></div>
+
+<footer class="footer footer-default">
+    <div class="container">
+        <nav>
+            <ul>
+                <li>
+                    <a href="https://www.creative-tim.com">
+                        Creative Tim
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.creative-tim.com/about-us">
+                        About Us
+                    </a>
+                </li>
+                <li>
+                    <a href="http://blog.creative-tim.com">
+                        Blog
+                    </a>
+                </li>
+                <li>
+                    <a href="https://github.com/creativetimofficial/now-ui-kit/blob/master/LICENSE.md">
+                        MIT License
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="copyright">
+            &copy;
+            {{data | date: 'yyyy'}}, Designed by
+            <a href="https://www.invisionapp.com" target="_blank">Invision</a>. Coded by
+            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>.
+        </div>
+    </div>
+</footer>
+

@@ -14,7 +14,7 @@
                     <div class='col-md-8'>{{product.nomProduit | lowercase}}</div>
                 </div>
                 <div class='row'>
-                    <div class='col-md-4'>Code:</div>
+                    <div class='col-md-4'>Qte:</div>
                     <div class='col-md-8'>{{ product.qteProduit  }}</div>
                 </div>
                 <div class='row'>
@@ -30,7 +30,7 @@
 
             <div class='col-md-4'>
                 <img
-                        class="rounded-circle mr-1"
+                        class="rounded mr-1"
                         src="{{this.api+'/Imgarticles/'+product.idProduit}}"
                         height="80%"
                         width="80%"

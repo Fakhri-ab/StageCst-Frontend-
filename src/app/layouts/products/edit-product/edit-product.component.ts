@@ -6,6 +6,7 @@ import {IDropdownSettings} from 'ng-multiselect-dropdown';
 import {Categorie} from '../../../../shared/models/categorie';
 import {Produit} from '../../../../shared/models/produit';
 import {FormControl, FormGroup} from '@angular/forms';
+import {MyToastrService} from '../../../../shared/services/my-toastr.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -35,7 +36,7 @@ export class EditProductComponent implements OnInit {
   });
 
   constructor(private produitService: ProduitService, private router: Router, private router1: ActivatedRoute,
-              private CategoriesService: CategorieService) { }
+              private CategoriesService: CategorieService, private toastr: MyToastrService) { }
 
   ngOnInit(): void {
     this.dropdownSettings = {
@@ -62,7 +63,7 @@ export class EditProductComponent implements OnInit {
     this.produitService.EditProduit(formData, this.id)
         .subscribe(data => {
           console.log('hhhhhhhhhh' , data);
-          // this.produit = new Produit();
+          this.toastr.showNotification('top', 'right', 1, 'Produit:', '', '...Produit modifié....')
           this.gotoList();
         })
   }

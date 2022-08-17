@@ -6,6 +6,7 @@ import { CategoriesComponent } from '../categories/categories.component';
 import { AddCategorieComponent } from './add-categorie/add-categorie.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import { EditCategorieComponent } from './edit-categorie/edit-categorie.component';
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { EditCategorieComponent } from './edit-categorie/edit-categorie.componen
     imports: [
         CommonModule,
         CategoriesRoutingModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgbPaginationModule
     ]
 })
 export class CategoriesModule { }

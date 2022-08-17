@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Categorie} from '../../../../shared/models/categorie';
 import {CategorieService} from '../../../../shared/services/categorie.service';
 import {FormControl, FormGroup} from '@angular/forms';
+import {MyToastrService} from '../../../../shared/services/my-toastr.service';
 
 @Component({
   selector: 'app-edit-categorie',
@@ -23,7 +24,8 @@ export class EditCategorieComponent implements OnInit {
   });
 
 
-  constructor(private categorieService: CategorieService , private router: Router, private router1: ActivatedRoute) { }
+  constructor(private categorieService: CategorieService , private router: Router,
+              private router1: ActivatedRoute, private toastr: MyToastrService) { }
 
   ngOnInit(): void {
       this.router1.paramMap.subscribe(paramMap => {
@@ -37,6 +39,7 @@ export class EditCategorieComponent implements OnInit {
         .subscribe(data => {
           console.log(data);
           this.cat = new Categorie();
+            this.toastr.showNotification('top', 'right', 1, 'Categorie:', '', '...Categorie modifié....')
           this.gotoList();
         })
   }

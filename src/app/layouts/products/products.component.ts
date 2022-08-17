@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {Produit} from '../../../shared/models/produit';
 import {ProduitService} from '../../../shared/services/produit.service';
 import {Categorie} from '../../../shared/models/categorie';
+import {MyToastrService} from '../../../shared/services/my-toastr.service';
 
 @Component({
   selector: 'app-products',
@@ -11,11 +12,12 @@ import {Categorie} from '../../../shared/models/categorie';
 })
 export class ProductsComponent implements OnInit {
 
-
+  page = 1;
   products!: any[];
   focus;
   focus1;
-  constructor(public router: Router, private produitService: ProduitService) { }
+  constructor(public router: Router, private produitService: ProduitService
+      , private toastr: MyToastrService) { }
 
   ngOnInit(): void {
     // tslint:disable-next-line:prefer-const
@@ -42,6 +44,7 @@ export class ProductsComponent implements OnInit {
     // @ts-ignore
     this.produitService.deleteProduit(prod.idProduit).subscribe(res => {console.log(res);
       this.router.navigate(['/admin/Products']);
+      this.toastr.showNotification('top', 'right', 3, 'Produit:', '', '...Produit Supprimé....')
       this.getAllProducts(); })
   }
   goToProductItem(id) {

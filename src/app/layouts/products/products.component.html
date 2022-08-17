@@ -13,16 +13,16 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" *ngFor="let product of products">
+                            <table class="table" >
                                 <thead class=" text-primary">
                                 <th>
                                     Name
                                 </th>
                                 <th>
-                                    Country
+                                    price
                                 </th>
                                 <th>
-                                    City
+                                    Qte
                                 </th>
                                 <th class="text-right">
                                     images
@@ -31,7 +31,7 @@
                                     Actions
                                 </th>
                                 </thead>
-                                <tbody>
+                                <tbody *ngFor="let product of products">
                                 <tr>
                                     <td (click)="goToProductItem(product.idProduit)">
                                         {{product.nomProduit}}
@@ -60,6 +60,9 @@
                                 </tr>
 
                                 </tbody>
+                                <div class="col-12">
+                                    <ngb-pagination (pageChange)="page = $event" [collectionSize]="50" [(page)]="page" aria-label="Default pagination" class="pagination-primary"></ngb-pagination>
+                                </div>
                             </table>
                         </div>
                     </div>

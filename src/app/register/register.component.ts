@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {UserService} from '../../shared/services/user.service';
 import {UserAuthService} from '../../shared/services/user-auth.service';
 import {Router} from '@angular/router';
+import {MyToastrService} from '../../shared/services/my-toastr.service';
 
 @Component({
   selector: 'app-register',
@@ -29,23 +30,22 @@ export class RegisterComponent implements OnInit {
   });
   constructor(private userService: UserService,
               private userAuthService: UserAuthService,
-              private router: Router) { }
+              private router: Router,
+              private toastr: MyToastrService) { }
 
   ngOnInit(): void {
   }
 
   submit() {
 
-    // formData.append('nomcat', this.prodFile);
-    this.userService.SignUp(this.SignUpForm.value).subscribe((res => this.router.navigateByUrl('/login')));
-    console.log(this.SignUpForm.value);
-    this.alerts.push({
-      id: 1,
-      type: 'success',
-      strong: 'Well done!',
-      message: 'You successfully created your account.',
-      icon: 'ui-2_like'
-    })
+    if (this.SignUpForm.valid) {
+      this.userService.SignUp(this.SignUpForm.value).subscribe((res => this.router.navigateByUrl('/login')));
+      this.toastr.showNotification('top', 'right', 2, 'User ', ' Compte creé',
+      console.log(this.SignUpForm.value));
+    } else {
+      this.toastr.showNotification('top', 'right', 3, 'erreur:', 'verifier vos champs', '.......')
+    }
+
   }
 
   GoToSignIn() {

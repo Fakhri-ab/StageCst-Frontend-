@@ -13,7 +13,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table" *ngFor="let cat of cats">
+                            <table class="table" >
                                 <thead class=" text-primary">
                                 <th>
                                     Id
@@ -25,7 +25,7 @@
                                     Actions
                                 </th>
                                 </thead>
-                                <tbody>
+                                <tbody *ngFor="let cat of cats   ">
                                 <tr>
                                     <td>
                                         {{cat.idCategorie}}
@@ -43,6 +43,9 @@
 
                                 </tbody>
                             </table>
+                            <div class="col-12">
+                                <ngb-pagination (pageChange)="page = $event" [collectionSize]="50" [(page)]="page" aria-label="Default pagination" class="pagination-primary"></ngb-pagination>
+                            </div>
                         </div>
                     </div>
                 </div>

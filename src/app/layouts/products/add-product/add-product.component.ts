@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {CategorieService} from '../../../../shared/services/categorie.service';
 import {Categorie} from '../../../../shared/models/categorie';
 import {IDropdownSettings} from 'ng-multiselect-dropdown';
+import {MyToastrService} from '../../../../shared/services/my-toastr.service';
 
 @Component({
   selector: 'app-add-product',
@@ -31,7 +32,7 @@ export class AddProductComponent implements OnInit {
 
   });
   constructor(private produitService: ProduitService, private router: Router,
-              private CategoriesService: CategorieService) { }
+              private CategoriesService: CategorieService, private toastr: MyToastrService) { }
 
   ngOnInit(): void {
    // this.getallcat();
@@ -46,13 +47,18 @@ export class AddProductComponent implements OnInit {
   }
 
   submit() {
-    const formData = new FormData() ;
-    this.ProduitForm.value.categorie = this.ProduitForm.value.categorie[0]
-    formData.append('produit', JSON.stringify(this.ProduitForm.value));
-    formData.append('file', this.prodFile);
-   // formData.append('nomcat', this.prodFile);
-    this.produitService.addProduit(formData).subscribe((res => this.router.navigateByUrl('/admin/Products')));
-    // console.log(this.ProduitForm.value);
+    if (this.ProduitForm.valid) {
+      const formData = new FormData() ;
+      this.ProduitForm.value.categorie = this.ProduitForm.value.categorie[0]
+      formData.append('produit', JSON.stringify(this.ProduitForm.value));
+      formData.append('file', this.prodFile);
+      this.toastr.showNotification('top', 'right', 2, 'Produit ', 'Ajouté avec succees', '.......')
+      this.produitService.addProduit(formData).subscribe((res => this.router.navigateByUrl('/admin/Products')));
+      // console.log(this.ProduitForm.value);
+    } else {
+      this.toastr.showNotification('top', 'right', 3, 'erreur:', 'verifier vos champs', '.......')
+    }
+
 
   }
 
