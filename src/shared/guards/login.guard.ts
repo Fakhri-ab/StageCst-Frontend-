@@ -7,25 +7,19 @@ import {UserService} from '../services/user.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
-
+export class LoginGuard implements CanActivate {
   constructor(
       private userAuthService: UserAuthService,
       private router: Router,
       private userService: UserService
   ) {}
+  canActivate() {
+    if (this.userAuthService.getToken()) {
+      this.router.navigateByUrl('admin/dashboard')
+    } else {
+      return true
 
-   canActivate() {
-  if (this.userAuthService.getToken()) {
-  return true;
-} else {
-  this.router.navigateByUrl('/login')
-
-}
+    }
   }
-   // return true;
- //  }
-
-
 
 }

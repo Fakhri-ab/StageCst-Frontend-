@@ -18,8 +18,7 @@ export class UsersComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    // tslint:disable-next-line:prefer-const
-    var rellaxHeader = new Rellax('.rellax-header');
+   // var rellaxHeader = new Rellax('.rellax-header');
 
     var body = document.getElementsByTagName('body')[0];
     body.classList.add('profile-page');

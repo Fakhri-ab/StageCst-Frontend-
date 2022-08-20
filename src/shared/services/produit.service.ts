@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {Produit} from '../models/produit';
 import {Observable} from 'rxjs';
 import {Categorie} from '../models/categorie';
@@ -19,8 +19,12 @@ export class ProduitService {
     return this.httpclient.post<Produit>(`${this.api}/Addprod`, formData);
   }
 
-  GetAllProduits(): Observable<any> {
-    return this.httpclient.get<any>(`${this.api}/AllProd`);
+  GetAllProduits() {
+  //  const params = new HttpParams()
+        // .set('page', p.page)
+        // .set('size', p.size)
+      //  .set('recherche', p.recherche)
+    return this.httpclient.get<Produit>(`${this.api}/AllProd`);
   }
 
   EditProduit(formData: FormData, id) {
@@ -29,7 +33,7 @@ export class ProduitService {
 
   getProduit(id): Observable<Produit> {
     // @ts-ignore
-    return this.httpclient.get(`${this.api}/retrieve-Produit/${id}`);
+    return this.httpclient.get<Produit>(`${this.api}/retrieve-Produit/${id}`);
   }
 
   deleteProduit(id): Observable<any> {

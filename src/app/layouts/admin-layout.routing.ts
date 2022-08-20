@@ -5,6 +5,7 @@ import { DashboardComponent } from '../../app/layouts/dashboard/dashboard.compon
 import { RoleComponent } from './role/role.component';
 import {ProductsComponent} from './products/products.component';
 import {CategoriesComponent} from './categories/categories.component';
+import {RoleGuard} from '../../shared/guards/role.guard';
 export const AdminLayoutRoutes: Routes = [
 
     {
@@ -45,7 +46,7 @@ export const AdminLayoutRoutes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('./Products/products.module').then(x => x.ProductsModule),
-
+                canActivate: [RoleGuard], data: {role: 'Admin'}
             }]},
     {
         path: 'Categories',
@@ -54,7 +55,7 @@ export const AdminLayoutRoutes: Routes = [
             {
                 path: '',
                 loadChildren: () => import('./Categories/Categories.module').then(x => x.CategoriesModule),
-
+                canActivate: [RoleGuard], data: {role: 'Admin'}
             }]}
 
 

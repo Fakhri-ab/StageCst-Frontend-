@@ -12,6 +12,17 @@
                             <i class="now-ui-icons ui-1_simple-add"></i>Add Product</button>
                     </div>
                     <div class="card-body">
+                        <form>
+                            <div class="input-group no-border col-md-4">
+                                <input type="text" value="" class="form-control" placeholder="Search... "  (ngModelChange)="search($event)" [ngModel]="key" name="key" >
+                                <div class="input-group-append">
+
+                                    <div class="input-group-text">
+                                        <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <div class="table-responsive">
                             <table class="table" >
                                 <thead class=" text-primary">
@@ -31,15 +42,15 @@
                                     Actions
                                 </th>
                                 </thead>
-                                <tbody *ngFor="let product of products">
+                                <tbody *ngFor="let product of products" (click)="goToProductItem(product.idProduit)">
                                 <tr>
-                                    <td (click)="goToProductItem(product.idProduit)">
+                                    <td >
                                         {{product.nomProduit}}
                                     </td>
-                                    <td (click)="goToProductItem(product.idProduit)">
+                                    <td >
                                         {{product.prixProduit}}
                                     </td>
-                                    <td (click)="goToProductItem(product.idProduit)">
+                                    <td >
                                         {{product.qteProduit}}
                                     </td>
                                     <td class="text-right">

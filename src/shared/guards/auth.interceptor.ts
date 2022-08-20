@@ -18,49 +18,43 @@ export class AuthInterceptor implements HttpInterceptor {
                       private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    if (req.headers.get('No-Auth') === 'true') {
-      return next.handle(req.clone());
-    }
-    const token = this.userAuthService.getToken();
+      if (req.headers.get('No-Auth') === 'true') {
+          return next.handle(req.clone());
+      }
+      const token = this.userAuthService.getToken();
 
-   // const user = this.userService.getus
-    if (token) {
-      req =   req.clone(
-          {
-            setHeaders: {
-                Authorization: `Bearer ${token}`
-            }
-          }
-      )
-
-
-    }
-
-    return next.handle(req).pipe(
-        catchError(
-            (err: HttpErrorResponse) => {
-              console.log(err.status);
-              if (err.status === 401) {
-                // this.router.navigate(['/login']);
-              } else if (err.status === 403) {
-                // this.router.navigate(['/login']);
+      // const user = this.userService.getus
+      if (token) {
+          req = req.clone(
+              {
+                  setHeaders: {
+                      Authorization: `Bearer ${token}`
+                  }
               }
-              throwError('Some thing is wrong when you want to login.....')
-              return throwError(err.message || err);
+          )
 
 
-            }
-        )
-    );
+      }
+
+      return next.handle(req).pipe(
+          catchError((err) => {
+              if (err instanceof HttpErrorResponse) {
+                  if (err.status === 401) {
+                      this.userAuthService.clear();
+                      this.router.navigate(['/login'])
+                  }
+              }
+              return throwError(err);
+          }))
+
   }
-
-  // private addToken(request:HttpRequest<any>,token:string){
-  //     return request.clone(
-  //         {
-  //             setHeaders:{
-  //                 Authorization : `Bearer ${token}`
-  //             }
-  //         }
-  //     )
-  // }
-}
+      // private addToken(request:HttpRequest<any>,token:string){
+      //     return request.clone(
+      //         {
+      //             setHeaders:{
+      //                 Authorization : `Bearer ${token}`
+      //             }
+      //         }
+      //     )
+      // }
+  }

@@ -4,6 +4,7 @@ import {CommonModule} from '@angular/common';
 import {AddProductComponent} from './add-product/add-product.component';
 import {EditProductComponent} from './edit-product/edit-product.component';
 import {DetailsProductComponent} from './details-product/details-product.component';
+import {RoleGuard} from '../../../shared/guards/role.guard';
 
 const routes: Routes = [
     {

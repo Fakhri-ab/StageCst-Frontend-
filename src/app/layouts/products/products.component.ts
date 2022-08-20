@@ -12,10 +12,14 @@ import {MyToastrService} from '../../../shared/services/my-toastr.service';
 })
 export class ProductsComponent implements OnInit {
 
+
+  products!: any;
   page = 1;
-  products!: any[];
   focus;
   focus1;
+  pageSize ;
+  collectionSize: number
+  key = ''
   constructor(public router: Router, private produitService: ProduitService
       , private toastr: MyToastrService) { }
 
@@ -33,7 +37,7 @@ export class ProductsComponent implements OnInit {
   getAllProducts() {
     this.produitService.GetAllProduits().subscribe(res => {this.products = res;
       console.log(res)
-       })
+    })
   }
 
   goToEdit(id) {
@@ -49,6 +53,27 @@ export class ProductsComponent implements OnInit {
   }
   goToProductItem(id) {
     this.router.navigate(['admin/Products/detailsProduct', id])
+  }
+
+  search(event) {
+    this.key = event
+    const request = {};
+    request['page'] = 0
+    request['size'] = this.pageSize
+    this.page = 0
+    request['recherche'] = this.key
+    console.log(request)
+    this.getAllProducts();
+
+  }
+
+  nextPage(event: any) {
+    const request = {};
+    request['page'] = event - 1
+    request['size'] = this.pageSize
+    request['recherche'] = this.key
+    console.log(request)
+    this.getAllProducts();
   }
 
 
